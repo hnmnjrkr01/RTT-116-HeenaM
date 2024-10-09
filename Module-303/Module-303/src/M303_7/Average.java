@@ -1,4 +1,4 @@
-package org.perscholas;
+package M303_7;
 
 public class Average {
 
