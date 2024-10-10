@@ -3,37 +3,38 @@ package M303_5.Homework.PA303_5_1;
 import java.util.Scanner;
 
 public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
 
-    private static int[] bubbleSort(int[] number){
-        int temp = 0;
-        for(int i=0;i<number.length-1;i++){
-            for(int j=i+1;j<number.length;j++){
-                if(number[i] > number[j]){
-                    temp = number[i];
-                    number[i] = number[j];
-                    number[j] = temp;
+        int temp;
+        boolean swapped = false;
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
                 }
             }
         }
+}
 
+    public static void main(String args[]) {
+        int arr[] = {64, 34, 25, 12, 90, 22, 11};
 
-        return number;
-    }
-
-    public static void main(String[] args) {
-
-        Scanner scan = new Scanner(System.in);
-        int[] number = new int[5];
-
-        for(int counter=0;counter<5;counter++){
-            System.out.print("Enter number: ");
-            number[counter] = scan.nextInt();
-            System.out.print("\n");
+        System.out.println("Before Sorting: ");
+        for(int a:arr) {
+                System.out.print(a+" ");
         }
 
-        System.out.println("Bubble Sorted array: "+ bubbleSort(number).toString());
-
-
-
+        bubbleSort(arr);
+        System.out.println();
+        System.out.println("After Sorting: ");
+        for(int a:arr) {
+            System.out.print(a+" ");
+        }
     }
+
+
 }
