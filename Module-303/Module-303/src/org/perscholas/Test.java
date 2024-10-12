@@ -1,10 +1,18 @@
 package org.perscholas;
 
+import java.util.Scanner;
+
 public class Test {
     public static void main(String[] args)
     {
-        String str = " This  is  geek";
-        String[] split = str.split("[' , ? \\s  ] ");
+        Scanner scan = new Scanner(System.in);
+        String str1 = scan.nextLine();
+
+
+        String str = "He is a very very good boy, isn't he?";
+        //String str = "B,,,A";
+        String[] split = str.trim().split("[ !,?._'@]+");
+        System.out.println(split.length);
 
         for (int i = 0; i < split.length; i++)
             System.out.println( split[i]);

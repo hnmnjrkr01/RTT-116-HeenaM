@@ -74,6 +74,18 @@ public class CoffeeShop {
 
         //Error Check
         if(selection>1 || selection<=products.size()) {
+            //q.setQuantity(q.getQuantity + quantity); check the item in cart if its there the just increase the quantity
+            /*
+            * when adding an item to the cart ... first increment the quantity
+            *  on the product by the amount that the person wanted to order ...
+            * then loop over the list of items in the cart and if the item is not
+            * in the cart then you add to the cart --- Amazon cart item quantity
+            *
+            *
+            * check if the product already exist in the cart
+            * */
+
+
 
             //add product to cart
             Product p = products.get(selection - 1);
