@@ -1,5 +1,6 @@
 package coffee_shop;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -32,7 +33,7 @@ public class CoffeeShop {
             Product product = products.get(count);
             System.out.println((count +1)+ ") " +product.getName()+ "\t " +product.getPrice()); //count+1 will do the math & increment the value properly
         }
-        //System.out.println("\n");
+
   }
 
     private int printMainMenu(){
@@ -52,7 +53,7 @@ public class CoffeeShop {
             System.out.println("\n");
             return select;
         }catch (InputMismatchException e){
-            System.out.println("Invalid selection"+e.getMessage());
+            System.out.println("Invalid selection "+e.getMessage());
             return -1;
         }
         finally {
@@ -66,11 +67,26 @@ public class CoffeeShop {
         //display item
         printProductMenu();
 
+        int quantity=0, selection=0;
+
         //take order
-        System.out.println("\n");
-        System.out.print("Enter product number: ");
-        int selection = scanner.nextInt();
-        scanner.nextLine();
+         try {
+            while (true) {
+                System.out.println("\n");
+                System.out.print("Enter product number: ");
+                selection = scanner.nextInt();
+                if (selection >= 1 && selection < products.size()) {
+                    System.out.print("Enter the Quantity: ");
+                    quantity = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } /*else {
+                    System.out.println("Invalid Quantity");
+                }*/
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid Quantity 1111");
+        }
 
         //Error Check
         if(selection>1 || selection<=products.size()) {
@@ -84,41 +100,55 @@ public class CoffeeShop {
             *
             * check if the product already exist in the cart
             * */
-
-
-
             //add product to cart
+
             Product p = products.get(selection - 1);
-            cart.add(p);
+            //quantity
+            if(cart.contains(p)) {
+
+                //adjustment to quantity on product
+                int index = cart.indexOf(p); //get the index of ordered product if it already exist in the cart
+                cart.get(index).setQuantity(cart.get(index).getQuantity()+quantity); //Fetch the product that already exist from the cart  //increase the quantity of the product by the new entered quantity
+
+            } else {
+                p.setQuantity(quantity); //if the product is ordered first time, then just set the quantity
+                cart.add(p);
+            }
+
             System.out.println(p.getName() + " added to the cart ");
         } else{
             System.out.println("Invalid item selection");
         }
 
-        //quantity
-        //adjustment to quantity on product
-
     }
 
     public void checkout(){
         //show cart item
-        System.out.print("========Items in your cart :==============");
+        System.out.println("========Items in your cart :==============");
 
         double subtotal = 0.0;
 
+        String pattern = "###.##";
+        DecimalFormat nf = new DecimalFormat(pattern);
+
         for(Product item: cart){
-            System.out.println("\n"+item.getName()+"\t"+item.getPrice()+"");
-            subtotal += item.getPrice();
+            double totalPriceForEachProduct = item.getPrice() * item.getQuantity();
+            System.out.println(item.getName()+"\t$"+
+                    nf.format(item.getPrice())+
+                               "\t X "+
+                               item.getQuantity() + " = $"+
+                    nf.format(totalPriceForEachProduct));
+            subtotal += totalPriceForEachProduct;
         }
         System.out.println("\n");
-        System.out.println("Subtotal\t\t$"+subtotal);
+        System.out.println("Subtotal\t\t$"+ nf.format(subtotal));
             //cal tax
         double tax = subtotal * 0.09;
-        System.out.println("Tax\t\t\t\t$"+tax);
+        System.out.println("Tax\t\t\t\t$"+nf.format(tax));
         //cal total
 
         double total = subtotal + tax;
-        System.out.println("Total\t\t\t$"+total);
+        System.out.println("Total\t\t\t$"+nf.format(total));
     }
 
   public void start(){
