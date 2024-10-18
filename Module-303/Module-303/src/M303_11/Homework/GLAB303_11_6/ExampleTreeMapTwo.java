@@ -15,11 +15,11 @@ public class ExampleTreeMapTwo {
         System.out.println("First Key: " + firstKey);
 
         // Using the lastKey() method
-        String lastKey = numbers.lastKey();
+        String lastKey = numbers.lastKey();                             //  return first or last KEY
         System.out.println("Last Key: " + lastKey);
 
         // Using firstEntry() method
-        System.out.println("First Entry: " + numbers.firstEntry());
+        System.out.println("First Entry: " + numbers.firstEntry());     //return first ot last VALUE
 
         // Using the lastEntry() method
         System.out.println("Last Entry: " + numbers.lastEntry());

@@ -1,5 +1,6 @@
 package M303_11.Homework.GLAB303_11_2;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -38,5 +39,7 @@ public class RemoveElementsFromArrayList {
         // Remove all elements from the ArrayList
         programmingLanguages.clear();
         System.out.println("After clear(): " + programmingLanguages);
+
+        System.out.println("Scripting Languages: " + scriptingLanguages);
     }
 }

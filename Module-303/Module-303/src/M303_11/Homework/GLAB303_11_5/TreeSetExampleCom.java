@@ -4,7 +4,7 @@ import java.util.TreeSet;
 public class TreeSetExampleCom {
     public static void main(String[] args) {
         // Create a TreeSet with user-defined comparator
-        TreeSet<String> cities = new TreeSet<>(new CitiesComparator());
+        TreeSet<String> cities = new TreeSet<>(new CitiesComparator());     //calling constructor of CititesComparator
         //add elements to the comparator
         cities.add("UAE");
         cities.add("Mumbai");

@@ -42,84 +42,106 @@ public class CoffeeShop {
         System.out.println("2) Purchase Product");
         System.out.println("3) Checkout");
         System.out.println("4) Exit");
-        //System.out.println("\n");
-
-        System.out.print("Enter selection: ");
 
         try {
+            return readNumberFromUser("\nEnter selection: ");
+        }catch (InvalidInputException iie) {iie.getMessage();}
 
-            int select = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("\n");
-            return select;
+        return 0;
+
+        }
+
+    private int readNumberFromUser(String question) throws InvalidInputException{
+        System.out.print(question);
+        try {
+               int selection = scanner.nextInt();
+               return selection;                    //finally will still be called after RETURN stmt.
         }catch (InputMismatchException e){
-            System.out.println("Invalid selection "+e.getMessage());
-            return -1;
+            //this is throwing Checked Exception
+            throw new InvalidInputException("Invalid Input: You must enter a valid number."+e.getMessage());
+        }finally {
+            scanner.nextLine();
         }
-        finally {
-            //scanner.nextLine();
-        }
-
-
     }
 
+
+
     public void addProductToCart(){
-        //display item
+        //display items
         printProductMenu();
 
         int quantity=0, selection=0;
 
-        //take order
-         try {
-            while (true) {
-                System.out.println("\n");
-                System.out.print("Enter product number: ");
-                selection = scanner.nextInt();
-                if (selection >= 1 && selection < products.size()) {
-                    System.out.print("Enter the Quantity: ");
-                    quantity = scanner.nextInt();
-                    scanner.nextLine();
-                    break;
-                } /*else {
-                    System.out.println("Invalid Quantity");
-                }*/
+        try {
+            //take order
+            try {
+                while (true) {
+                    System.out.println("\n");
+                    selection = readNumberFromUser("Enter your selection");
+                    if (selection >= 1 && selection < products.size()) {
+                        quantity = readNumberFromUser("Enter quantity ");
+                        break;
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid Quantity");
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid Quantity 1111");
-        }
 
-        //Error Check
-        if(selection>1 || selection<=products.size()) {
-            //q.setQuantity(q.getQuantity + quantity); check the item in cart if its there the just increase the quantity
-            /*
-            * when adding an item to the cart ... first increment the quantity
-            *  on the product by the amount that the person wanted to order ...
-            * then loop over the list of items in the cart and if the item is not
-            * in the cart then you add to the cart --- Amazon cart item quantity
-            *
-            *
-            * check if the product already exist in the cart
-            * */
-            //add product to cart
+            //Error Check
+            if (isProductSelectionValid(selection)) {
+                //q.setQuantity(q.getQuantity + quantity); check the item in cart if its there the just increase the quantity
+                /*
+                 * when adding an item to the cart ... first increment the quantity
+                 *  on the product by the amount that the person wanted to order ...
+                 * then loop over the list of items in the cart and if the item is not
+                 * in the cart then you add to the cart --- Amazon cart item quantity
+                 * check if the product already exist in the cart
+                 */
+                //add product to cart
 
-            Product p = products.get(selection - 1);
-            //quantity
-            if(cart.contains(p)) {
+                Product p = products.get(selection - 1);
+                //quantity
+                /*
+                 * if(!existInCart(p){
+                 * cart.add(p);
+                 * }*/
+                if (cart.contains(p)) {
 
-                //adjustment to quantity on product
-                int index = cart.indexOf(p); //get the index of ordered product if it already exist in the cart
-                cart.get(index).setQuantity(cart.get(index).getQuantity()+quantity); //Fetch the product that already exist from the cart  //increase the quantity of the product by the new entered quantity
+                    //adjustment to quantity on product
+                    int index = cart.indexOf(p); //get the index of ordered product if it already exist in the cart
+                    cart.get(index).setQuantity(cart.get(index).getQuantity() + quantity); //Fetch the product that already exist from the cart  //increase the quantity of the product by the new entered quantity
 
+                } else {
+                    p.setQuantity(quantity); //if the product is ordered first time, then just set the quantity
+                    cart.add(p);
+                }
+
+                System.out.println(p.getName() + " added to the cart ");
             } else {
-                p.setQuantity(quantity); //if the product is ordered first time, then just set the quantity
-                cart.add(p);
+                System.out.println("Invalid item selection");
             }
+        }catch (InvalidInputException iie) {iie.getMessage();}
 
-            System.out.println(p.getName() + " added to the cart ");
-        } else{
-            System.out.println("Invalid item selection");
+    }
+
+    private boolean isProductSelectionValid(int selectedProduct) {
+        if(selectedProduct>=1 && selectedProduct<=products.size()) {
+            return true;
         }
+        return false;
 
+    }
+
+    private boolean existInCart(Product purchased){
+
+        boolean found = false;
+        for(Product item : cart) {
+            if(item.getName().equals(purchased.getName())) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 
     public void checkout(){
@@ -134,10 +156,10 @@ public class CoffeeShop {
         for(Product item: cart){
             double totalPriceForEachProduct = item.getPrice() * item.getQuantity();
             System.out.println(item.getName()+"\t$"+
-                    nf.format(item.getPrice())+
+                               nf.format(item.getPrice())+
                                "\t X "+
                                item.getQuantity() + " = $"+
-                    nf.format(totalPriceForEachProduct));
+                               nf.format(totalPriceForEachProduct));
             subtotal += totalPriceForEachProduct;
         }
         System.out.println("\n");

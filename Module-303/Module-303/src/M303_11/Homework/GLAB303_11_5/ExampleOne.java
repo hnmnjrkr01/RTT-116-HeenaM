@@ -14,6 +14,6 @@ public class ExampleOne {
         // Using addAll() method
         numbers.addAll(evenNumber);
         numbers.add(5);
-        System.out.println("New HashSet: " + numbers);
+        System.out.println("New HashSet: " + numbers);      //Orderd set
     }
 }
