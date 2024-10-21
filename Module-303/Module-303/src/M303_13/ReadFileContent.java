@@ -11,9 +11,11 @@ public class ReadFileContent {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String str= "";
 
+
         while((str = br.readLine())!= null){
             System.out.println(str);
         }
+
         }catch (FileNotFoundException e){
             System.out.println(e.getMessage()+" FileNotFoundException");
         }catch (IOException e){

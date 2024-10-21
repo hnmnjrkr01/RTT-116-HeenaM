@@ -1,4 +1,4 @@
-package M303_11;
+package M303_11.Generics;
 
 import java.util.ArrayList;
 import java.util.List;

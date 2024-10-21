@@ -1,4 +1,4 @@
-package M303_11;
+package M303_11.Generics;
 
 //KBA related stuff read slides deck carefully Slide-17
 // E Element K Key N Number V Key-Valuepair  T-Anything else left

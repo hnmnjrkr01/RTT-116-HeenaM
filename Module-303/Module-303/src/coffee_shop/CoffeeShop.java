@@ -150,27 +150,27 @@ public class CoffeeShop {
 
         double subtotal = 0.0;
 
-        String pattern = "###.##";
+        String pattern = "\t\t\t\t$###.##";
         DecimalFormat nf = new DecimalFormat(pattern);
 
         for(Product item: cart){
             double totalPriceForEachProduct = item.getPrice() * item.getQuantity();
-            System.out.println(item.getName()+"\t$"+
+            System.out.println(item.getName()+"\t"+
                                nf.format(item.getPrice())+
                                "\t X "+
-                               item.getQuantity() + " = $"+
+                               item.getQuantity() + " = "+
                                nf.format(totalPriceForEachProduct));
             subtotal += totalPriceForEachProduct;
         }
         System.out.println("\n");
-        System.out.println("Subtotal\t\t$"+ nf.format(subtotal));
+        System.out.println("Subtotal\t\t"+ nf.format(subtotal));
             //cal tax
         double tax = subtotal * 0.09;
-        System.out.println("Tax\t\t\t\t$"+nf.format(tax));
+        System.out.println("Tax\t\t\t\t"+nf.format(tax));
         //cal total
 
         double total = subtotal + tax;
-        System.out.println("Total\t\t\t$"+nf.format(total));
+        System.out.println("Total\t\t\t"+nf.format(total));
     }
 
   public void start(){
