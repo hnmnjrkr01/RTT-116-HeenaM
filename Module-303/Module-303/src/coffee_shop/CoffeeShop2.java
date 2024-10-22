@@ -3,7 +3,7 @@ package coffee_shop;
 import java.text.DecimalFormat;
 import java.util.*;
 
-public class CoffeeShop {
+public class CoffeeShop2 {
 
     private List<Product> products = new ArrayList<Product>();
     private Scanner scanner = new Scanner(System.in);
@@ -20,54 +20,63 @@ public class CoffeeShop {
         Product p3 = new Product("Sugar Cookie",5.89,0);
         products.add(p3);
 
-        Product p5 = new Product("Ginger Cookie",5.89,0);
-        products.add(p5);
-
         Product p4 = new Product("Egg Sandwich",6.49,0);
         products.add(p4);
 
-        //sorting this list by price
-        //stream will not modify the original list
-        List<Product> sortedProducts = products.stream().
-                                       sorted(Comparator.comparing(Product::getPrice)).
-                                       toList();
+        Product p5 = new Product("Ginger Cookie",5.89,0);
+        products.add(p5);
+    }
 
-        sortedProducts.forEach(p->System.out.println(p.toString()));
-        System.out.println("-----------------------------------------");
+    private List<Product> sortListByPrice(List<Product> products) {
+        for(int countI = 0; countI < products.size()-1; countI++){
+            for(int countJ = 0; countJ < products.size()-1; countJ++){
+                if(products.get(countJ).getPrice() > products.get(countJ+1).getPrice()){
+                    Product temp=  products.get(countJ);
+                    products.set(countJ, products.get(countJ+1));
+                    products.set(countJ+1, temp);
+                }
+            }
+        }
+        return products;
+}
 
-        //this sort method will alter the original list
-        products.sort(Comparator.comparing(Product::getPrice).thenComparing(Product::getName));
-        products.forEach(e-> System.out.println(e.toString()));
-        //products=sortedProducts;
-
-
-  }
-
-  private void printProductMenu(){
+    private void printProductMenu(){
+        sortListByPrice(products);
 
         for(int count = 0; count < products.size(); count++){
-            Product product = products.get(count);
-            System.out.println((count +1)+ ") " +product.getName()+ "\t " +product.getPrice()); //count+1 will do the math & increment the value properly
-        }
-
+              Product product = products.get(count);
+              System.out.println((count +1)+ ") " +product.getName()+ " \t" +product.getPrice()); //count+1 will do the math & increment the value properly
+          }
   }
-
-    private int printMainMenu(){
+  private int printMainMenu(){
 
         System.out.println("\n1) See Product Menu");
         System.out.println("2) Purchase Product");
         System.out.println("3) Checkout");
-        System.out.println("4) Exit");
+        System.out.println("4) Search Product");
+        System.out.println("5) Exit");
+
 
         try {
             return readNumberFromUser("\nEnter selection: ");
         }catch (InvalidInputException iie) {iie.getMessage();}
 
         return 0;
+    }
 
-        }
+    public void productSearch() throws InvalidInputException{
+        System.out.println("Enter a product name ");
+        String search = scanner.nextLine();
 
-    private int readNumberFromUser(String question) throws InvalidInputException{
+        List<Product> resultList = products.stream().filter(
+                                    p->p.getName().toLowerCase().
+                                    contains(search.toLowerCase())).toList();
+
+        resultList.forEach(System.out::println);
+    }
+
+
+  private int readNumberFromUser(String question) throws InvalidInputException{
         System.out.print(question);
         try {
                int selection = scanner.nextInt();
@@ -203,7 +212,13 @@ public class CoffeeShop {
                 addProductToCart();
             } else if (selection == 3) {
                 checkout();
-            } else if (selection == 4) {
+            }else if (selection == 4) {
+                try {
+                    productSearch();
+            }catch (InvalidInputException iie) {
+                    System.out.println(iie.getMessage()+" No results were found ");}
+            }
+            else if (selection == 5) {
                 System.out.print("Goodbye!");
                 System.exit(0);
             } else {
@@ -215,7 +230,7 @@ public class CoffeeShop {
    }
 
     public static void main(String[] args) {
-         CoffeeShop cs =new CoffeeShop();
+         CoffeeShop2 cs =new CoffeeShop2();
          cs.start();
 
 
