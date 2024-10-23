@@ -3,9 +3,9 @@ package coffee_shop;
 import java.text.DecimalFormat;
 import java.util.*;
 
-public class CoffeeShop2 {
+public class CoffeeShop3 {
 
-    private List<Product> products = new ArrayList<Product>();
+    private List<Product> products = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private List<Product> cart = new ArrayList<>();             //cart for coffee shop
 
@@ -54,8 +54,10 @@ public class CoffeeShop2 {
         System.out.println("2) Purchase Product");
         System.out.println("3) Checkout");
         System.out.println("4) Search Product");
-        System.out.println("5) Exit");
-
+        if(!cart.isEmpty()){
+        System.out.println("5) Delete Product");
+        }
+        System.out.println("6) Exit");
 
         try {
             return readNumberFromUser("\nEnter selection: ");
@@ -68,20 +70,21 @@ public class CoffeeShop2 {
         System.out.println("Enter a product name ");
         String search = scanner.nextLine();
 
-        if (search.equalsIgnoreCase("coffee") ||
-                search.equalsIgnoreCase("cookie") ||
-                search.equalsIgnoreCase("small") ||
-                search.equalsIgnoreCase("large")) {
+            if (search.equalsIgnoreCase("coffee") ||
+                    search.equalsIgnoreCase("cookie") ||
+                    search.equalsIgnoreCase("small") ||
+                    search.equalsIgnoreCase("large")) {
 
-            List<Product> resultList = products.stream().filter(
-                    p -> p.getName().toLowerCase().
-                            contains(search.toLowerCase())).toList();
-            resultList.forEach(System.out::println);
+                List<Product> resultList = products.stream().filter(
+                        p -> p.getName().toLowerCase().
+                                contains(search.toLowerCase())).toList();
+                resultList.forEach(System.out::println);
 
-        } else {
-            throw new InvalidInputException("Invalid input "+search);
+            } else {
+                throw new InvalidInputException("Invalid input "+search);
+            }
         }
-    }
+
 
 
   private int readNumberFromUser(String question) throws InvalidInputException{
@@ -110,8 +113,8 @@ public class CoffeeShop2 {
             try {
                 while (true) {
                     System.out.println("\n");
-                    selection = readNumberFromUser("Enter your selection");
-                    if (selection >= 1 && selection < products.size()) {
+                    selection = readNumberFromUser("Enter your choice of Item");
+                    if (selection >= 1 && selection <= products.size()) {
                         quantity = readNumberFromUser("Enter quantity ");
                         break;
                     }
@@ -157,7 +160,44 @@ public class CoffeeShop2 {
 
     }
 
-    private boolean isProductSelectionValid(int selectedProduct) {
+    private void deleteProductFromCart() throws InvalidInputException{
+
+        Set<Product> productsCart = new HashSet<>(cart);
+        String productName, answer;
+
+
+        if(productsCart.isEmpty()){
+            System.out.println("================Cart is EMPTY================");
+            throw new InvalidInputException("Cart is empty");
+        }else{
+        System.out.println("Products in the cart : \n");
+        productsCart.stream().forEach(p->
+                        System.out.println(p.getName()+" "+p.getPrice()+" "+p.getQuantity()));
+
+        System.out.println("Which item do you want to delete?\n");
+        productName = scanner.nextLine();
+        System.out.println("Are you sure you want to delete "+productName+" ?\n");
+        answer = scanner.nextLine();
+
+       if(answer.equalsIgnoreCase("yes")){
+       for(Product p: productsCart){
+           if(p.getName().equalsIgnoreCase(productName)){
+               cart.remove(p); productsCart = new HashSet<>(cart);;
+           }else{
+               break;
+           }
+       }
+       }else{
+           throw new InvalidInputException("Wrong choice!!!");
+           }
+
+       System.out.println("=====Items left in your cart===========\n");
+       productsCart.stream().forEach(System.out::println);
+
+    }
+    }
+
+        private boolean isProductSelectionValid(int selectedProduct) {
         if(selectedProduct>=1 && selectedProduct<=products.size()) {
             return true;
         }
@@ -224,10 +264,16 @@ public class CoffeeShop2 {
                 try {
                     productSearch();
             }catch (InvalidInputException iie) {
-                    System.out.println(iie.getMessage()+" No results were found ");}
-            }
-            else if (selection == 5) {
-                System.out.print("Goodbye!");
+                    System.out.println(iie.getMessage()+" No results were found ");
+                }
+            }else if (selection == 5 && cart.size()>0) {
+                try {
+                    deleteProductFromCart();
+                }catch (InvalidInputException iie) {
+                    System.out.println(iie.getMessage()+" No results were found ");
+                }
+            }else if (selection == 6) {
+                System.out.print("==========Goodbye!===========");
                 System.exit(0);
             } else {
                 System.out.println("Invalid selection "+ selection);
@@ -238,7 +284,7 @@ public class CoffeeShop2 {
    }
 
     public static void main(String[] args) {
-         CoffeeShop2 cs =new CoffeeShop2();
+         CoffeeShop3 cs =new CoffeeShop3();
          cs.start();
 
 
