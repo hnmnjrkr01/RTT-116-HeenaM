@@ -25,6 +25,11 @@ public class CoffeeShop2 {
 
         Product p5 = new Product("Ginger Cookie",5.89,0);
         products.add(p5);
+
+
+        //adding more products from file using
+        List<Product> loadedProducts = new ProductLoader().laodProduct();
+        products.addAll(loadedProducts);
     }
 
     private List<Product> sortListByPrice(List<Product> products) {
@@ -40,12 +45,15 @@ public class CoffeeShop2 {
         return products;
 }
 
-    private void printProductMenu(){
-        sortListByPrice(products);
+    private void printProductMenu(List<Product> productMenu){
+        sortListByPrice(productMenu);
 
-        for(int count = 0; count < products.size(); count++){
-              Product product = products.get(count);
-              System.out.println((count +1)+ ") " +product.getName()+ " \t" +product.getPrice()); //count+1 will do the math & increment the value properly
+        String pattern = "$###.##";
+        DecimalFormat nf = new DecimalFormat(pattern);
+
+        for(int count = 0; count < productMenu.size(); count++){
+              Product product = productMenu.get(count);
+              System.out.println((count +1)+ ") " +product.getName()+ " \t" +nf.format(product.getPrice())); //count+1 will do the math & increment the value properly
           }
   }
   private int printMainMenu(){
@@ -55,9 +63,13 @@ public class CoffeeShop2 {
         System.out.println("3) Checkout");
         System.out.println("4) Search Product");
         System.out.println("5) Exit");
+      if ( cart.size() > 0 ) {
+          // equivlant of front end code .. meaning we changed the user input to deny the unser an option when
+          // they have no products in their cart
+          System.out.println("6) Remove Item From Cart");
+      }
 
-
-        try {
+          try {
             return readNumberFromUser("\nEnter selection: ");
         }catch (InvalidInputException iie) {iie.getMessage();}
 
@@ -91,7 +103,7 @@ public class CoffeeShop2 {
                return selection;                    //finally will still be called after RETURN stmt.
         }catch (InputMismatchException e){
             //this is throwing Checked Exception
-            throw new InvalidInputException("Invalid Input: You must enter a valid number."+e.getMessage());
+            throw new InvalidInputException("Invalid Input: You must enter a valid number.");
         }finally {
             scanner.nextLine();
         }
@@ -101,7 +113,7 @@ public class CoffeeShop2 {
 
     public void addProductToCart(){
         //display items
-        printProductMenu();
+        printProductMenu(products);
 
         int quantity=0, selection=0;
 
@@ -177,7 +189,31 @@ public class CoffeeShop2 {
         return found;
     }
 
-    public void checkout(){
+    private void deleteProductFromCart(){
+        printProductMenu(cart);
+        try {
+
+            int selection = readNumberFromUser("Enter product number to delete");
+
+            // do some error checking here on both of these
+            int quantity = readNumberFromUser("Enter quantity to remove:");
+
+            // lets assume the user only enters valid data
+            Product remove = cart.get(selection-1);
+
+            if ( remove.getQuantity() < quantity ) {
+                // this is the case where there are 5 in the cart and we want to remove 3
+                remove.setQuantity(remove.getQuantity() - quantity);
+            } else {
+                // this remove the item from the cart
+                cart.remove(selection - 1);
+             }
+        }catch (InvalidInputException iie) {
+            System.out.println("===========Cart is EMPTY=================");
+        }
+    }
+
+   public void checkout(){
         //show cart item
         System.out.println("========Items in your cart :==============");
 
@@ -215,7 +251,7 @@ public class CoffeeShop2 {
             int selection = printMainMenu();
 
             if (selection == 1) {
-                printProductMenu();
+                printProductMenu(products);
             } else if (selection == 2) {
                 addProductToCart();
             } else if (selection == 3) {
@@ -229,6 +265,8 @@ public class CoffeeShop2 {
             else if (selection == 5) {
                 System.out.print("Goodbye!");
                 System.exit(0);
+            } else if (selection == 6 && (cart.size()>0)) {
+                    deleteProductFromCart();
             } else {
                 System.out.println("Invalid selection "+ selection);
             }
