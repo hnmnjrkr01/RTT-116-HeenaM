@@ -2,7 +2,7 @@ package SBA303;
 
 import java.util.ArrayList;
 
-public class ArrayToList implements MyList{
+public class ArrayToList implements MyList {
 
     ArrayList<String>  arrayToList;
 
@@ -27,12 +27,12 @@ public class ArrayToList implements MyList{
 
     @Override
     public ArrayList<String> compact() {
-        for(int i=0; i<arrayToList.size(); i++){
-            if(arrayToList.get(i).equals("")){
-                arrayToList.remove(i);
+        ArrayList<String> a = arrayToList;
+        for (int i = 0; i < arrayToList.size(); i++) {
+            if (!arrayToList.get(i).isEmpty()) {
+                a.add(arrayToList.get(i));
             }
         }
-        //arrayToList.forEach(System.out::println);
-        return arrayToList;
+        return a;
     }
 }
