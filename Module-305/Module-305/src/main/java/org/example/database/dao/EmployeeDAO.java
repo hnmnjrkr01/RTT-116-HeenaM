@@ -6,9 +6,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EmployeeDAO {
     // old style: make session factory for all DAO
     private SessionFactory factory = new Configuration().configure().buildSessionFactory();
+
 
     public void update(Employee employee) {
         // for hibernate
@@ -21,18 +25,19 @@ public class EmployeeDAO {
     }
 
     public void create(Employee employee) {
-        // for hibernate
-        // update: the product has already existed to work without error
         Session session = factory.openSession();
-        session.beginTransaction();
-        session.persist(employee);
-        session.getTransaction().commit();
-        session.close();
+        session.getTransaction().begin();
+        if(employee != null) {
+            session.persist(employee);
+            session.getTransaction().commit();
+        }else{
+            System.out.println("Employee is null");
+            session.close();
+        }
     }
 
     public void deleteByProduct(Employee employee) {
-        // for hibernate
-        // update: the product has already existed to work without error
+
         Session session = factory.openSession();
         session.beginTransaction();
         try {
@@ -77,4 +82,23 @@ public class EmployeeDAO {
             session.close();
         }
     }
+     public List<Employee> findByName(String name) {
+         Session session = factory.openSession();
+         String hqlQuery = "SELECT e FROM Employee e WHERE firstName = :name or lastname = :name";
+
+
+         TypedQuery<Employee> query = session.createQuery(hqlQuery, Employee.class);
+         query.setParameter("name", name);
+
+
+         try {
+             List<Employee> employeeList = query.getResultList();
+             return employeeList;
+         } catch (Exception e) {
+             return new ArrayList<>();
+         } finally {
+             session.close();
+         }
+
+     }
 }

@@ -1,13 +1,9 @@
+package org.example;
 
 import org.example.database.dao.ProductDAO;
-import org.example.database.entity.Order;
 import org.example.database.entity.OrderDetail;
 import org.example.database.entity.Product;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

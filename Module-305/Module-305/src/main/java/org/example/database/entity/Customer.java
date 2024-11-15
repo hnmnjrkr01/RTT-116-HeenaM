@@ -17,7 +17,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Integer id;
 
     //-------------------One Employee has MANY Customers Relationship-------------------------
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -27,7 +27,7 @@ public class Customer {
 
     // because of this relationship foreign key is now read only set function wont work for this column
     @Column(name = "sales_rep_employee_id", insertable = false, updatable = false)
-    private int salesRepEmployeeId;
+    private Integer salesRepEmployeeId;
 
     //-------------------One Customer has MANY Orders Relationship-------------------------
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -1,6 +1,7 @@
 package org.example.database.dao;
 
 import jakarta.persistence.TypedQuery;
+import org.example.database.entity.Order;
 import org.example.database.entity.OrderDetail;
 import org.example.database.entity.Product;
 import org.hibernate.Session;
@@ -130,11 +131,24 @@ public class OrderDetailDAO {
         }
     }
 
+    public OrderDetail findByProductIdAndOrderId(Integer orderId, Integer productId) {
+        Session session = factory.openSession();
 
+       // String hql = "SELECT od FROM  OrderDetail od WHERE od.productId = :productId and od.orderId = :orderId ORDER BY orderId";
+        String hql = "SELECT od FROM  OrderDetail od WHERE od.product.id = :productId and od.order.id = :orderId ORDER BY orderId";         //Advanced version of HQL joining
 
+        TypedQuery<OrderDetail> query = session.createQuery(hql, OrderDetail.class);
+        query.setParameter("orderId", orderId);
+        query.setParameter("productId", productId);
+        try{
+            OrderDetail orderDetail = query.getSingleResult();
+            return orderDetail;
 
-
-
-
+        }catch (Exception e) {
+            return null;
+        }finally {
+            session.close();
+        }
+    }
 
 }

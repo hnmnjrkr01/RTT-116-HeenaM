@@ -13,11 +13,12 @@ public class CustomerDAO {
 
     private SessionFactory factory = new Configuration().configure().buildSessionFactory();
 
-    public void createCustomer(Customer customer) {
+    public Customer createCustomer(Customer customer) {
         Session session = factory.openSession();
         session.getTransaction().begin();
         session.persist(customer);
         session.getTransaction().commit();
+        return customer;
     }
 
     public void deleteCustomer(Customer customer) {
@@ -27,16 +28,17 @@ public class CustomerDAO {
         session.getTransaction().commit();
     }
 
-    public void updateCustomer(Customer customer) {
+    public Customer updateCustomer(Customer customer) {
         Session session = factory.openSession();
         session.getTransaction().begin();
         session.merge(customer);
         session.getTransaction().commit();
+        return customer;
     }
 
     public Customer findCustomerById(Integer id){
 
-        String sql = "select * from product where id = ?";
+        //String sql = "select * from product where id = ?";
         Session session = factory.openSession();
 
         String hqlQuery = "SELECT c FROM Customer c WHERE c.id = :customerId";        //Hibernate Query Language
