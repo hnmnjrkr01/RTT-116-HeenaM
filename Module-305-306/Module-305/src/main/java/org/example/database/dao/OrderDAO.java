@@ -16,9 +16,16 @@ public class OrderDAO {
 
     public void createOrder(Order order) {
         Session session = factory.openSession();
-        session.getTransaction().begin();
-        session.persist(order);
-        session.getTransaction().commit();
+        try {
+            session.getTransaction().begin();
+            session.persist(order);
+            session.getTransaction().commit();
+        }catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
     }
 
     public void deleteOrder(Order order) {

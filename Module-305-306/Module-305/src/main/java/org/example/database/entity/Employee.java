@@ -159,6 +159,14 @@ public class Employee {
         this.profileImageUrl = profileImageUrl;
     }
 
+    public Office getOffice() {
+        return office;
+    }
+
+    public void setOffice(Office office) {
+        this.office = office;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

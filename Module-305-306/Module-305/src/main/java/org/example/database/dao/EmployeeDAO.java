@@ -32,8 +32,9 @@ public class EmployeeDAO {
             session.getTransaction().commit();
         }else{
             System.out.println("Employee is null");
-            session.close();
+
         }
+        session.close();
     }
 
     public void deleteByProduct(Employee employee) {

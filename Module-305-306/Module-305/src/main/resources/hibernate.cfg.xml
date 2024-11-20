@@ -19,6 +19,8 @@
 
         <!-- allow hibernate to get stuff even after the session is closed -->
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <!-- Auto commit sets off in database -->
+        <property name="hibernate.connection.autocommit">true</property>
 
         <!-- this is for debugging your code set it ot false incase to turn it OFF -->
         <property name="hibernate.show_sql" >false</property>

@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode
 public class Customer {
 
     @Id

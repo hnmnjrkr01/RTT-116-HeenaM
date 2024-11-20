@@ -78,7 +78,7 @@ public class ProductDAO {
         Session session = factory.openSession();
         session.getTransaction().begin();
         try {
-            session.delete(product);
+            session.remove(product);
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
@@ -213,6 +213,24 @@ public class ProductDAO {
     }
 
 
+    public Product findProductByPName(String pName) {
 
+        String hqlQuery = "SELECT p FROM Product p WHERE p.productName = :pName";
+
+        Session session = factory.openSession();
+
+        TypedQuery<Product> query = session.createQuery(hqlQuery, Product.class);
+        query.setParameter("pName", pName);
+        try {
+
+            Product result = query.getSingleResult();
+            return result;
+        } catch (Exception e) {
+            System.out.println("Some ERROR has occurred!!!!!!!!!! " + e.getMessage());
+        } finally {
+            session.close();
+        }
+        return null;
+    }
 
 }
