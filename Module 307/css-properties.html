@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Properties</title>
+    <!--import you style sheet here in head GOOD PRACTICE-->
+    <link rel="stylesheet" href="/pub/css/external.css">
+
+    <!--importing google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--internal styling applying to app p and span tags-->
+    <style>
+        p, span{
+            color: red;
+            background-color: rgb(105, 89, 133);
+            font-size: 30px;
+            font-weight: 500;
+            font-family: "Roboto", sans-serif;
+            border-radius: 15px;
+        }
+        /*Custome class creates using "." */
+        .customclass{
+            color: blue;
+            padding-bottom: 15px;
+            margin: 10px 15px 10px 15px;/*top, right, bottom, left--> clockwise*/
+            margin: 15px;
+            padding-left: 15px;
+            padding-right: 20px;
+            border: 10px;
+            background-color: bisque;
+            border-top: 10px solid black;
+        }
+        #anything{
+            color: red;
+            background-color: blueviolet;
+        }
+        .pseudo{
+            background-color: brown;
+        }
+    
+        .pseudo:hover{
+            background-color: blue;
+            padding: 15px;
+        }
+        .pseudo:active{
+            background-color: chartreuse;
+            padding: 20px;
+            
+        }
+    </style>
+    
+    <p style="text-align: end;">This is some text on page.</p>
+    <p>This is some text on page.</p>
+
+    <!--Inline styling-->
+    <p style="color: black; font-size: 50px;">This is some styled text on page.</p>
+
+    <span>This is span</span>
+
+    <!--Class Attribute to apply to a CSS class -->
+    <div class="customclass">This is a div tag</div>
+
+    <div id="anything">This is a div tag</div>
+
+    <p id="anything">This is a paragraph</p>
+
+    <div class="definedExternal1" style="font-family: Roboto, sans-serif;">This is a div tag with Rpboto Font Style</div>
+
+    <div class="pseudo">This is a div with pseudo class</div>
+
+   
+</body>
+</html>

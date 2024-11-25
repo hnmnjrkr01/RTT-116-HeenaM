@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-11/21</title>
+</head>
+<style>
+    .boxmodel {
+        background-color: lightblue;
+        padding: 20px;
+        margin: 20px;
+        border: 5px solid black;
+        align: center;
+    }
+</style>
+<body>
+    <form class="boxmodel">
+        
+        <table border="3"  cellspacing="5px" >
+            <tr>
+               <th colspan="2" style="background-color: yellow; color: red; "> <h3>Registration Form</h3></tr>
+            </tr>
+        <tr>
+            <td align="right"style="background-color: aqua;height: 30px;"><labe for="firstname">Enter Name </label></td>
+            <td align="left" style="background-color: aqua; height: 30px;;"><input type="text"/></td>    
+        </tr>
+
+        <tr>
+            <td align="right" style="background-color: aqua;height: 30px;"><labe for="password">Enter Password</label></td>
+            <td align="left" style="background-color: aqua;height: 30px;"><input type="password"/></td>    
+        </tr>
+
+        <tr>
+            <td align="right" style="background-color: aqua;height: 30px;"><labe for="address">Enter Address</label></td>
+            <td align="left" style="background-color: aqua;height: 30px;"><input type="textarea" rows="4" cols="5"/></td>    
+        </tr>
+
+        <tr>
+            <td align="right" style="background-color: aqua;height: 30px;"><labe for="game">Select Game</label></td>
+            <td align="left" style="background-color: aqua;height: 30px;"><input type="checkbox" />Hockey<br>
+                <input type="checkbox" />Football<br>
+                <input type="checkbox" />Badminton<br>     
+                <input type="checkbox" />Cricket<br>
+                <input type="checkbox" />Volleyball<br>
+            </td>    
+        </tr>
+
+        <tr>
+            <td align="right" style="background-color: aqua;height: 30px;"><labe for="gender">Gender</label></td>
+            <td align="left" style="background-color: aqua;height: 30px;">
+                <input type="radio" id="male" value="male"/>Male<br>
+                <input type="radio" id="female" value="female"/>Female<br>
+            </td>    
+        </tr>
+
+        <tr>
+            <td align="right" style="background-color: aqua;height: 30px;"><labe for="age">Select Your Age</label></td>
+            <td align="left" style="background-color: aqua;height: 30px;">
+                <select>
+                    <option>Lesser than 18</option>
+                    <option> 18 </option>
+                    <option>More than 18</option>
+                </select>
+            </td>    
+        </tr>
+        <tr>
+            <td align="right" style="background-color: aqua;"><labe for="photo">Select Photo</label></td>
+            <td align="left" style="background-color: aqua;"><input type="file"/></td>    
+        </tr>
+        <tr>
+            <td colspan="3" align="center" style="background-color: aqua;">
+               <button style="height:30px; width:100px ;">Click Me</button>
+               <button type="reset" style="height:30px; width:100px ;">Reset</button>
+               <button type="submit" style="height:30px; width:100px ;">Submit</button>
+            </td>
+        </tr>
+
+        </table>
+    </form>
+</body>
+</html>
