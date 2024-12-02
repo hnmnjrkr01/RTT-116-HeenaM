@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7e1e1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: rgb(166, 129, 201);
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 400px;
+            height: 400px;
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .input-group input:focus {
+            border-color: #007BFF;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #c463a7;
+            color: rgb(78, 57, 57);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .register-link a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    
+</style>
+<body>
+    <div class="login-container">
+        <h2>User-Registration</h2>
+        <form>
+        <table cellspacing="5">
+            <tr>
+                <td><label>Username:</label> </td>
+                <td><input type="text" name="username" placeholder="Username"></td>
+            </tr>
+            <tr>
+                <td>Password: </td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>Firstname: </td>
+                <td><input type="text" name="firstname" placeholder="firstname"></td>
+            </tr>
+            <tr>
+                <td>Lastname: </td>
+                <td><input type="text" name="lastname" placeholder="lastname"></td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td>PhoneNumber: </td>
+                <td><input type="tel" name="Phonenumber"></td>
+            </tr>
+            <tr>
+                <td>User-Type: </td>
+                <td><input type="text" name="user-type" placeholder="Customer/Admin"></td>
+            </tr>
+            <tr>
+                <td>License-Plate Number</td>
+                <td><input type="text" name="licenseNumber" placeholder="ABC-123"></td>
+            </tr><br><br>
+            <tr>
+              <td><button class="submit-btn" type="submit" onclick="myFunction" >Submit</button></td>
+              <td><button class="submit-btn" type="reset" onclick="">Reset</td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <script>
+        function myFunction(){
+          alert("Registered !!");
+        }
+      </script>
+</body>
+</html>

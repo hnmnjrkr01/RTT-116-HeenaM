@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="navBarStyle.css"/>
+    <title>Welcome To Paking Facility</title>
+    
+</head>
+<style>
+
+body{
+    background-image: url("images/parkingSlots.jpg");
+    background-color: antiquewhite;
+    
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4b0a0a;
+  }
+  
+  li {
+    float: left;
+    border-right:1px solid #bbb;
+  }
+  
+  li:last-child {
+    border-right: none;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 18px;
+    text-decoration: none;
+    width: 100px;
+    height: 50px;
+  }
+  
+  li a:hover:not(.active) {
+    background-color:  #1396ad;
+    color: black;
+  }
+  
+  .active {
+    background-color: #16dd80;
+  }
+</style>
+<body>
+   
+    <h1 style="background-color: rgb(116, 115, 115); text-align: center; color: rgb(65, 2, 2); font-size: 80px;">Welcome to Parking Application</h1>
+
+    <ul >
+        <li><a class="active" href="UserLogInPage.html">Login</a></li>
+        <li><a href="RegistrationPage.html">Registration</a></li>
+        <li><a href="CarParkingDisplay.html">Available Parkings</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li style="float:right"><a href="#about">About</a></li>
+      </ul>
+      
+</body>
+
+</html>
