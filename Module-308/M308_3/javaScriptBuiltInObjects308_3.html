@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Built-In Objects</title>
+</head>
+
+<script>
+
+    //-----------------------DATE Object----------------------------------
+    // new Date()
+    const d = new Date();
+    console.log(d);
+    // new Date(year, month, ...)
+    const d1 = new Date(2021, 11, 24, 10, 33, 30, 0);
+    console.log(d);
+    const d2 = new Date(2021, 11, 24);
+    console.log(d);
+    // new Date(dateString)
+    const d3 = new Date("October 13, 2021 11:13:00");
+    console.log(d);
+    // new Date(milliseconds)
+    const d4 = new Date(86400000);
+    console.log(d);
+
+    let first = new Date('January 1, 2019 04:30:00');
+    let second = new Date('2019-01-01T04:30:00');
+    console.log(first); 	// Tue Jan 01 2019 04:30:00 GMT-0600
+    console.log(first.getTime() == second.getTime());	// true
+    console.log(second.getHours());					// 4
+    console.log(first.setMinutes(45));				// 1546339500000
+    console.log(first.getMinutes());
+
+    //------------------------Number Object---------------------------------
+
+    const str = "23";
+    const num = Number(str);
+    console.log(typeof num);
+    console.log(Number(340900000000000000).toExponential());
+
+    Math.PI;				        //returns 3.141592653589793
+    // Math.round(x) 		        //returns the value rounded to its nearest integer
+    Math.round(4.7);	            //returns 5
+    Math.round(4.4);	            //returns 4
+    // Math.pow(x, y)  	            //returns the value of x to the power of y
+    Math.pow(8, 2);	                // returns 64
+    // Math.sqrt(x) 		        //returns the square root of x:
+    Math.sqrt(64);		            // returns 8
+    // Math.ceil(x) 		        //returns the value rounded up to nearest integer
+    Math.ceil(4.4);	                // returns 5
+    // Math.floor(x) 		        //returns the value rounded down to nearest integer
+    Math.floor(4.7);
+
+    const min = 5;
+    const max = 10;
+    let value = Math.floor(Math.random() * (max - min + 1) + min);
+    console.log(value);
+
+
+    //------------------------Math.random()--------------------------------------
+
+    function randomWholeNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    console.log(randomWholeNumber(5, 10)); 	    // numbers from 5 to 10
+    console.log(randomWholeNumber(7, 42)); 	    // numbers from 7 to 42	
+    console.log(randomWholeNumber(1, 100)); 	// numbers from 1 to 100	
+    console.log(randomWholeNumber(-10, 10)); 	// numbers from -10 to 10	
+    console.log(randomWholeNumber(-4, 20)); 	// numbers from -4 to 20
+
+    //-----------------------JavaScript Arrays------------------------------------
+
+
+    const empty = [];				        // an empty array
+    const primes = [2, 3, 5, 7, 11];	// an array with five numbers as elements
+    const mixed = [1.1, true, "a"];	    // an array with elements of mixed type
+
+    const base = 1024;
+    const table = [base + 1, base + 2, base + 3];
+
+    const empty1 = new Array();		        // an empty array
+    const ten = new Array(10);		        // an array with ten undefined elements
+
+    const mixed1 = new Array(1.1, true, "a");	// an array with mixed elements
+
+
+    const objArray = [{ key1: "value1" }, { key2: "value2" }];
+    // ArrayName[array_index][object_key]	
+    console.log(objArray[0]["key1"]);	// value1
+
+    const multiArray = [
+        [{ key1: "value1", key2: "value2" },
+        { key1: "value3", key2: "value4" }],
+        [{ key1: "value5", key2: "value6" },
+        { key1: "value7", key2: "value8" }]
+    ];
+    // ArrayName[array_index][internal_array_index][object_key]	
+    console.log(multiArray[1][0]["key2"]);	// value6
+
+
+
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

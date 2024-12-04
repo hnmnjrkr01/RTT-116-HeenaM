@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Script Control Statements</title>
+</head>
+<script>
+    function ifElseLadder(number) {
+
+        if (number > 5) {
+            return console.log(number + " is greater than 5");
+        } else if (number < 5) {
+            return console.log(number + " is less than 5");
+        } else if (number == 5) {
+            return console.log(number + " is equal to 5");
+        } else {
+            return console.log(number + " is not a number");
+        }
+
+    }
+
+    console.log(ifElseLadder(11));
+
+    function switchStatement(x, y) {
+
+        let operand = "/";
+        switch (operand) {
+            case "+":
+                console.log(x + y);
+                break;
+            case "-":
+                console.log(x - y);
+                break;
+            case "*":
+                console.log(x * y);
+                break
+            case "/":
+                console.log(x / y);
+                break;
+            default:
+                console.log("Invalid Operand")
+                break;
+        }
+
+    }
+    console.log(switchStatement(4, 5));
+
+    //---------------------WHILE LOOP--------------------------
+    const RATE = 0.05;
+    const INITIAL_BALANCE = 10000;
+
+    let balance = INITIAL_BALANCE;
+    let target = 2 * INITIAL_BALANCE;
+    let year = 0;
+
+    while (balance < target) {
+        let interest = balance * RATE;
+        balance += interest;
+        year++;
+    }
+
+    console.log("The investment doubled after " + year + " years.");
+
+    //--------------------------DO While Loop--------------------------------------
+
+
+    let number = 1;
+    do {
+        let value = number * 2;
+        number++;
+        console.log(value);
+    } while (number <= 5);
+
+    //--------------------------------------------------------------------
+
+    function evenNumber() {
+        for (let i = 0; i <= 100; i++) {
+            if (i % 2 === 0) {
+                console.log(i);
+            }
+        }
+    }
+
+    function oddNumbers() {
+        for (let i = 1; i < 100; i += 2) {
+            console.log(i);
+        }
+    }
+
+    function primeNumber(primeNum) {
+
+        if (primeNum <= 1)
+            return false;
+        for (let i = 2; i < primeNum; i++) {
+            if (primeNum % i === 0)
+                return true;
+        }
+
+    }
+
+    function loopOnStrings() {
+        let userInput = "";
+        userInput = prompt("Enter an Arithmetic Expression");
+        console.log(userInput);
+
+        let operators = "";
+        let numbers = "";
+        const SEPARATOR = ", ";
+
+        for (let i = 0; i < userInput.length; i++) {
+            let c = userInput[i]; // the current character
+            if (c >= '0' && c <= '9') {
+                numbers += c + SEPARATOR;
+            } else {
+                operators += c + SEPARATOR;
+            }
+        }
+
+        console.log("Numbers: ", numbers);
+        console.log("Operators: ", operators);
+    }
+
+    function loopOnString2() {
+        let userInput = "";
+        userInput = prompt("Enter an Arithmetic Expression");
+        console.log(userInput);
+
+        let operators = "";
+        let numbers = "";
+        const SEPARATOR = ", ";
+
+        for (let i = 0; i < userInput.length; i++) {
+            let c = userInput[i]; // the current character
+            if (c >= '0' && c <= '9') {
+                while (i < userInput.length && c >= '0' && c <= '9') {
+                    c = userInput[i];
+                    numbers += c;
+                    i++;
+                }
+                numbers += SEPARATOR;
+                i--;
+            } else if (c == ' ') {
+            } else {
+                operators += c + SEPARATOR;
+            }
+        }
+
+        console.log("Numbers: ", numbers);
+        console.log("Operators: ", operators);
+    }
+
+</script>
+
+<body>
+    <h1>My Function 1</h1>
+</body>
+
+</html>

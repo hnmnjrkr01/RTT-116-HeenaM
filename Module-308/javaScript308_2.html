@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java-Script Functions</title>
+</head>
+<script>
+
+    const scope = "global scope";                   // A global variable
+    
+    function checkscope() {
+        let scope = "local scope";                  // A local variable
+        function nested() {
+            let scope = "nested scope";             // A nested local variable
+            return scope;                           // Return the value in this scope
+        }
+        return nested();
+    }
+    const result = checkscope();
+    console.log(result);                            // Will print “nested scope”
+
+
+    function logicalOperators() {
+        try {
+            3 > 4 && 4 == 4
+            3 > 4 || 4 == 4
+                (5 != 5 || 4 > 4) && !(2 == 2)
+                    (5 % 2 >= 2) && (!false || 4 < 0)
+                    (2 >= 2 && 10 % 3 == 1) || ((10 < 11 && 2 != 3) || 2 == 1)
+                        (5 <= 3 || 6 > 0) && (20 % 3 == 2 && 88 / 2 > 30)
+        } catch (err) {
+            console.log("Logging Customer Error:")
+            console.log(e)
+        }
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Array-Methods</title>
+</head>
+
+<script>
+
+    const a = [];			// an empty array
+    a[0] = 3;
+    const a = [];			// an empty array
+    a.push(3);				// a = [3]
+    a.push(4, 5, 6);		// a = [3, 4, 5, 6]
+    const a = [4, 5, 6];		// a = [4, 5, 6]
+    const b = a.pop();		// a = [4, 5]; b = 6
+    const c = a.shift();		// a = [5]; c = 4
+
+    //-------------------------Join()-------------------------
+
+    const a = [1, 2, 3];		// a new array with three elements
+    const x = a.join();		// “1,2,3”
+    const y = a.join(" ");		// “1 2 3”
+    const z = a.join("");		// “123”
+    const b1 = new Array(10);	// a new array with ten empty elements
+    const k = b1.join("-");
+    const c1 = x.split(",");		// [‘1’, ‘2’, ‘3’]
+
+    //--------------------reverse()-----------------------------
+
+    const a1 = [1, 2, 3];			// a new array with three elements
+    let b2 = a1.reverse().join();	// b = “3,2,1”
+    console.log(a1);				// [3, 2, 1]
+    console.log(b2);				// 3,2,1
+
+    //-----------------------sort()----------------------------------
+
+
+
+    let a = ["banana", "cherry", "apple"];
+    a.sort();
+    const s = a.join(" is good, ");
+    console.log(s);		// apple is good, banana is good, cherry
+    let fruits = ["banana", "orange", "apple", "mango"];
+    fruits.sort();
+    console.log(fruits);	// [“Apple”, “Banana”, “Mango”, “Orange”]
+
+    //-------------------slice()----------------------------------------------
+
+    const a = [1, 2, 3, 4, 5];
+    const w = a.slice(0, 3);	// w = [1, 2, 3]
+    const x1 = a.slice(3);		// x = [4, 5]
+    const y1 = a.slice(1, -1);	// y = [2, 3, 4]
+    const z1 = a.slice(-3, -2);	// z = [3]
+    console.log(a);			// [1, 2, 3, 4, 5]
+    const languages = ["JavaScript", "Python", "C", "C++", "Java"];
+    // slicing the array from start to second-to-last element
+    let new_arr = languages.slice(0, -1);
+    console.log(new_arr); // ['JavaScript', 'Python', 'C', 'C++']
+    // slicing the array from third-to-last to last element
+    let new_arr1 = languages.slice(-3);
+    console.log(new_arr1); // ['C', 'C++', 'Java']
+
+    //---------------------------------splice()-----------------------------
+    let fruits1 = ["banana", "orange", "apple", "mango"];
+    fruits1.splice(2, 0, "lemon", "kiwi");
+    console.log(fruits1);
+    // [“banana”, “orange”, “lemon”, “kiwi”, “apple”, “mango”]
+
+    let fruits2 = ["banana", "orange", "apple", "mango"];
+    fruits2.splice(2, 2, "lemon", "kiwi");	// removes 2 elements
+    console.log(fruits2);				// [“banana”, “orange”, “lemon”, “kiwi”]
+    const a = [1, 2, 3, 4, 5, 6, 7, 8];
+    const x2 = a.splice(4);				// x = [5, 6, 7, 8]; a = [1, 2, 3, 4]
+    const y2 = a.splice(1, 2);			// y = [2, 3]; a = [1, 4]
+    const z2 = a.splice(1, 1);			// z = [4]; a = [1]
+    const b3 = [1, 2, 3, 4, 5];
+    const m = b3.splice(2, 0, "a", "b");	// m = []; b = [1, 2, “a”, “b”, 3, 4, 5]
+    const n = b3.splice(2, 2, [1, 2], 3);	// n = [“a”, “b”]; 
+    // b3 = [1, 2, [1, 2], 3, 3, 4, 5]
+
+    //----------------------------------loops on array-----------------------------
+    let d = [23, 32, 45, 67, 77, 67, 98, 12];
+    for (const index in d) {
+        console.log(d[index]);	// will output each element of the array
+    }
+
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        age: 50,
+        eyeColor: "blue"
+    };
+    for (const personKey in person) {
+        console.log(personKey + ": " + person[personKey]);
+    } 	// will output each key: value pair in the object
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

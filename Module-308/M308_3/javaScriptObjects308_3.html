@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Objects</title>
+</head>
+<script>
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        age: 50,
+        eyeColor: "blue",
+        fullName: function () {
+            return this.firstName + " " + this.lastName;
+        }
+
+    };
+    console.log(person);
+    console.log(person.firstName, person["lastName"], person.age, person.eyeColor);
+    console.log(person.fullName())
+
+    const myArray = Object.values(person);
+    console.log(myArray);
+
+    delete person.age; // or delete person[“age”]
+    console.log(person);
+
+    const student = {
+        firstName: "John",
+        lastName: "Doe",
+        age: 30,
+        class: "Java developer"
+    };
+    student.score = "90%";
+    console.log(student.score);
+
+    //-----------------------Different Objects---------------------------
+
+    const x1 = new Object();    // A new Object object
+    const x2 = new String();    // A new String object
+    const x3 = new Number();    // A new Number object
+    const x4 = new Boolean();   // A new Boolean object
+    const x5 = new Array();     // A new Array object
+    const x6 = new RegExp();    // A new RegExp object
+    const x7 = new Function();  // A new Function object
+    const x8 = new Date();      // A new Date object
+
+    const o = new Object(); // Create an empty object: same as {}.
+    const a = new Array(); // Create an empty array: same as [].
+    const d = new Date(); // Create a Date object representing the current time.
+    const r = new RegExp("js"); // Create a RegExp object for pattern matching.
+
+
+    const person1 = new Object();
+    person1.firstName = "John";
+    person1.lastName = "Doe";
+    person1.age = 50;
+    person1.eyeColor = "blue";
+
+    //------------------------------Object Constructor-----------------------------------------
+
+    function Person(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+        this.introduce = function () {
+            console.log(this.firstName + " " + this.lastName +
+                " is " + this.age + " years old with " + this.eyeColor + " eyes.");
+        };
+    }
+    Person.prototype.species = "Human";
+
+
+    const myFather = new Person("John", "Doe", 50, "blue");
+    myFather.species ="Human";
+    const myMother = new Person("Sally", "Rally", 48, "green");
+
+    const myBrother = new Person("Jane", "Doe", 22, "blue");
+    myBrother.species = "Goblin";
+
+    myFather.birthday = "June 15th"; // Adding a property to an Object.
+
+    myFather.introduce(); // Calling an Object method.
+    console.log(myFather.species); // undefined
+
+    console.log(myFather.species);
+    console.log(myBrother.introduce());
+    console.log(myBrother.species);
+
+    //---------------------------------------------------------------------------------------
+    
+
+
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>
