@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Form Validation</title>
+</head>
+<body>
+    
+    <h1>HTML5 Form Validation</h1>
+
+    <form>
+        <div>
+            First Name <input type="text" required><br><br>
+            Last Name <input type="text" required><br><br>
+            Email  <input type="text" pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$" required><br><br>
+            Age  <input type="number" required min="1" max="99"><br><br>
+            Phone <input type="tel" pattern ="^\+1(\d{10})$" required><br><br>
+
+            <select name="Country" id="CountryId" required>
+                <option value=""> [choose yours] | Select Country </option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="UAE">UAE</option>
+            </select><br><br>
+        </div>
+
+        <button type="submit">Submit</button>
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>

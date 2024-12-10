@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Events</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+    <h1>Form Validation with Jquery</h1>
+    <p>
+        <button id="b1">Button 1</button>
+        <button id="b2">Button 2</button>
+    </p>
+</body>
+
+<script>
+
+    var bg = $("#b1").css("background-color");
+    $("#b1").click(
+        function () {
+            alert("this button 1 is clicked");
+            console.log("The paragraph 1 was clicked.");
+        }
+    );
+    $("#b1").on('click', function(){
+        console.log("this button 1 is clicked");
+    });
+    $("#b2").click(
+        function () {
+            alert("this button 2 is clicked");
+            console.log("The paragraph was clicked.");
+        }
+    );
+    
+    $("#b1").on('click', function(){
+        console.log("this button 2 is clicked");
+        
+    });
+
+    $("#b1").on('mouseenter', function(){
+        console.log("mouse is entering button-1");
+        $("#b1").css("background-color","gray");
+         $("#b1").show();
+    });
+
+   
+    $("#b1").on('mouseout', function(){
+        console.log("mouse is moving out button-1");
+        $("#b1").css("background-color",bg);
+       // $("#b1").hide();
+    });
+
+    let h = document.getElementById("b1");
+    h.addEventListener("click", function(e){
+        console.log("Button clicked event hadler by JavaScript");
+        console.log(e.currentTarget===this);
+    });
+
+</script>
+
+</html>

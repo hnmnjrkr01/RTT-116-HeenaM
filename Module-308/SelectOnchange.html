@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Select on change</h1>
+
+    <select id="counties">
+        <option>Select a option</option>
+        <option value="1">USA</option>
+        <option value="2">UK</option>
+        <option value="3">UAE</option>
+        <option value="4">India</option>
+    </select>
+</body>
+
+<script>
+    $("#counties").on("change", function(){
+
+        let displayname = $("#counties").find(":selected").text();
+        let value = $("#counties").find(":selected").val();
+        console.log(displayname);
+        console.log(value);
+    });
+</script>
+</html>

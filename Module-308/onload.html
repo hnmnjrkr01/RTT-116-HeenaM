@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+
+<script>
+$(document).ready(function(){
+    console.log("This prints after because it runs only when the document is ready");
+    
+});
+
+$("#header").css("color","red");
+(function(){
+    console.log("JavaScript ready() method");
+});
+
+</script>
+<body>
+    <h1 id="header">On Load Demo</h1>
+</body>
+
+
+<script>
+    console.log("Runs before the Document is ready");
+
+    $(document).ready(function(){
+    console.log("This prints new ready method");
+});
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+
+<body style="text-align: center;">
+    <h1>
+        JavaScript Assignment 12-07-2024 Button Clicked
+    </h1>
+    <h4>
+        How to count the number of
+        times a button is clicked?
+    </h4>
+    <button id="btn1">Click Here!</button>
+    <p>
+        Button Clicked <span id="display">0</span> Times
+    </p>
+
+    <h4>
+        With Second Button
+    </h4>
+    <button id="btn2">Click me!</button>
+    <p>
+        Button Clicked <span id="display2">0</span> Times
+    </p>
+
+</body>
+
+<script>
+
+
+    let count = 0; 
+    let count2 = 0;
+    let btn = document.getElementById("btn1");
+    let disp = document.getElementById("display");
+
+    let btn2 = document.getElementById("btn2");
+    let disp2 = document.getElementById("display2");
+
+    btn.addEventListener("click", function () {
+        console.log("2nd button eventListner");
+        count++;
+        disp.innerText = count;
+    });
+
+    btn.addEventListener("click", function () {
+        count++;
+        disp.innerHTML = count;
+    });
+
+  
+
+</script>
+
+</html>

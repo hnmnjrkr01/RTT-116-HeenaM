@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Forms</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<script>
+
+
+    function submitFunction(event) {
+        event.preventDefault();
+
+        let fn = $("#firstname").val();
+        let ln = $("#lastname").val();
+        let firstChar = ln.charAt(0).toUpperCase();
+        let restname = ln.slice(1);
+        $("#lastname").val(firstChar+restname);
+        const err = new Error("Firstname and Lastname are mandatory!!");
+
+        //confirm("Do you confirm?");
+        
+
+        
+        if (fn == "" || ln == "")  {
+            console.log("first name ie required");
+            $(".fns").css("color", "red");
+            $("#firstname").css("border-color", "red");
+            $("#lastname").css("border-color", "red");
+            $("#emptyErr").text(err).css("color","red");
+            
+        } else {
+            alert("Welcome" + fn+" "+ln);
+        }
+
+      //alert("Welcome " + fn)
+        console.log("button clicked--Welcome");
+        console.log(event);
+    }
+
+    
+
+</script>
+
+<body>
+    <h1>Jquery Form Validations</h1>
+
+    <form onsubmit="submitFunction(event);">
+        <span class="fns">First Name   <input type="text" id="firstname" name="firstname">
+        </span> <br><br>
+
+        <span class="fns">Last Name    <input type="text" id="lastname" name="lastname">
+        </span> <br><br>
+
+        <span>Email     <input type="text" id="email" pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$" >
+        </span> <br><br>
+
+        
+        <button id="subBtn"  type="submit">Submit</button><br><br>
+
+        <div>
+            <select id="opn" style="width: 150px;"> 
+                <option>Select a option</option>
+                <option>Java-Script</option>
+                <option>JQuery</option>
+                <option>Cascade Style Sheets</option>
+                <option>HTML</option>
+            </select>
+        </div>
+        <div id="emptyErr"></div>
+    </form>
+</body>
+
+<script>
+    $('form').on("submit"), function(event){
+        submitFunction(event);
+    };
+
+    $("#firstname").on('focus', function () {
+        console.log("firstname has focus");
+    });
+    $("#firstname").on('blur', function () {
+        console.log("firstname has blur");
+    });
+</script>
+
+
+
+
+</html>

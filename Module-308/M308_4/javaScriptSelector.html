@@ -10,13 +10,43 @@
     <h1 id="header">This is the header</h1>
     <p id="para">This is a paragraph with some text</p>
     First Name
-    <input id="firstname" type="text">
+    <input id="firstname1" name ="firstname" type="text">
+    <input id="firstname2" name ="firstname" type="text">
+
+    <p class="cssclassName">This is a second paragragh.</p>
+    <span class="cssclassName">This is span.</span>
 </body>
 <script>
-    let h = document.getElementById("header");
+    let h = document.getElementById("header");          //Most commonly used
     console.log(h);
+    h.remove();
 
     let p= document.getElementById("para");
     console.log(p);
+    console.log("before ->"+p.innerText);
+    p.innerText = "some new text.";
+    console.log("after ->"+p.innerText);
+   
+    let i = document.getElementsByName("firstname");            //Not much used
+    let i1 = document.querySelectorAll("input[name = firstname]")
+    console.log(i);
+    console.log(i1);
+
+    let ps = document.getElementsByTagName("p");
+    console.log(ps);
+
+    let c = document.getElementsByClassName("cssclassName");        //second most common
+    let c1 = document.querySelector(".cssclassName");
+    console.log(c);
+
+    let cs = document.querySelector('p,span');
 </script>
+
+<style>
+    p, span{
+        background-color: yellowgreen;
+    }
+
+
+</style>
 </html>

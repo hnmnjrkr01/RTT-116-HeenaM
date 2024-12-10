@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Jquery is always loaded at the top of the file-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- this stuff I want you to do manually and not use the HTML5 built in validations -->
+    <!-- Add another input field for last name and write check to make sure that the last name is not empty -->
+    <!-- add another check to make sure that the last name starts with a capital letter -->
+    <!-- follow the pattern for first name and when the last name has an error message I want you to display the correct eeror message under the input field -->
+    <!-- change the color of the last name field label to be red but not the * -->
+    <!-- change the background color of the input field to be red -->
+    <!-- when the user enters the last name correctly, I want you to change everthing back to initial state (no need to use variables) -->
+    <!-- add an email input field and check to make sure that the email has @ in it as a validation -->
+    <!-- add a select dropdown with 4 options in it ... then create a jquery listener for the select box on change print out the value that was selected -->
+
+    <script>
+
+        function submitFunction(event) {
+            console.log("Submit clicked");
+            console.log(event);
+            //this is important to know that a form when the submit button is clicked has 2 operations
+            // first is to get the input elements and create the URL with the user entered data 
+            // second will cause a page reload as the user data is sent to the server side
+            //event.preventDefault();
+
+            //let b = confirm("Are you sure you want to submit?");
+            //console.log(b);
+            //if (!b) {
+            event.preventDefault();
+            //};
+
+            // TODO HOMEWORK: Add another check here to make sure that no numbers are in the first name
+
+            let fn = $("#firstname").val();
+            if (fn == "") {
+                console.log("First name is required");
+                $("#fns").css("color", "red");
+                $("#firstname").css("border-color", "red");
+                $("#fnserror").text("First name is required");
+            } else {
+                console.log("user entered " + fn);
+                $("#fns").css("color", "black");
+                $("#firstname").css("border-color", "black");
+                $("#fnserror").hide;
+            };
+            // !!!!! ======= 1) to check input doesnt have numbers =================
+            function hasDigits(inputString) {
+                return /\d/.test(inputString);
+            };
+            if (fn.length > 0) {
+                if (hasDigits(fn)) {
+                    console.log("Only letters required");
+                    $("#fns").css("color", "red");
+                    $("#firstname").css("border-color", "red");
+                    $("#fnserror").text("First name can't contain numbers");
+                } else {
+                    console.log("user entered " + fn);
+                    $("#fns").css("color", "black");
+                    $("#firstname").css("border-color", "black");
+                }
+            };
+
+            // !!!!!! ========= Last Name field added =========================
+            let ln = $("#lastname").val();
+            if (ln == "") {
+                $("#lns").css("color", "red");
+                $("#lastname").css("border-color", "red");
+                $("#lnserror").text("Last Name is required");
+                console.log("Last name is required");
+            } else {
+                console.log("user entered " + ln);
+                $("#lns").css("color", "black");
+                $("#lastname").css("border-color", "black");
+
+            };
+            // !!!! ============ first letter of last name is capital ===========
+            if (ln.length > 0) {
+                let c = /^[A-Z]/.test(ln);
+                if (c == false) {
+                    console.log("First letter of last name must be an Uppercase");
+                    $("#lns").css("color", "red");
+                    $("#lastname").css("border-color", "red");
+                    $("#lnserror").text("First letter of last name must be an Uppercase");
+
+                } else {
+                    console.log("user entered" + ln);
+                    $("#lns").css("color", "black");
+                    $("#lastname").css("border-color", "black");
+                    $("#lnserror").hide;
+                };
+            };
+            // !!!! ============ Email validation with input required ===========
+            let em = $("#email").val();
+            if (em == "") {
+                console.log("Email is required");
+                $("#eml").css("color", "red");
+                $("#email").css("border-color", "red");
+                $("#emlerror").text("Email is required");
+            } else {
+                console.log("user entered " + fn);
+                $("#eml").css("color", "black");
+                $("#email").css("border-color", "black");
+                $("#emlerror").hide;
+            };
+            // !!!! ============ Email validation with @ ===========
+            if (em.length > 0) {
+                let pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+$/.test(em);
+                if (!pattern) {
+                    console.log("incorrect email pattern");
+                    $("#eml").css("color", "red");
+                    $("#email").css("border-color", "red");
+                    $("#emlerror").text("Please enter a valid email address!");
+                } else {
+                    console.log("user entered " + fn);
+                    $("#eml").css("color", "black");
+                    $("#email").css("border-color", "black");
+                    $("#emlerror").hide;
+                };
+            };
+
+        };
+    </script>
+
+
+    <h1>JQuery Form Validation</h1>
+    <!--using the onSubmit attribute of the form tag we can execute a javascript function
+    when an even happens.. in this case ... the submit button on the form is clicked-->
+    <form onSubmit="submitFunction(event)">
+        <span id="fns">First Name </span>*<input type="text" id="firstname" name="firstname" autocomplete="off">
+        <br />
+        <div id="fnserror"></div>
+        <br />
+        <span id="lns">Last Name </span>*<input type="text" id="lastname" name="lastname" autocomplete="off">
+        <br />
+        <div id="lnserror"></div>
+        <br />
+        <span id="eml">Email</span>*<input type="text" id="email" name="email" autocomplete="off">
+        <div id="emlerror"></div>
+        <br />
+        <div class="dropdown">
+            <select id="myDropdown">
+                <button id="gender">Gender
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                </button>
+            </select>
+        </div>
+        <br>
+        <input type="checkbox" id="box" name="agree"><button id="chk">I agree</button>
+        <br><br>
+        <button type="submit"> Submit</button>
+
+    </form>
+
+    <script>
+        //$("form").submit(function(){
+        // alert("Submitted");
+        //console.log("submit clicked")
+        //});
+
+        $("form").on("submit", function () {
+            console.log("submit clicked");
+        });
+
+        $("#firstname").on('focus', function () {
+            console.log("firstname is focused");
+            $("#fnserror").hide;
+        });
+        $("#firstname").on('blur', function () {
+            console.log("firstname is blurred");
+        });
+
+        // !!!! ================ checkbox with button ==============
+        // adding event listener to the button
+
+        $("#chk").on('click', function () {
+            var isChecked = $("#box").prop('checked'); //get currrent state
+            if (!isChecked) {
+                $("#box").prop("checked", !isChecked); //toggle state to negate
+                console.log("Agree clicked");
+            } else if (isChecked) {
+                $("#box").prop("checked", !isChecked);
+            }
+        });
+
+        // =========== for dropdown - then create a jquery listener ==========
+        //for the select box on change print out the value that was selected ==========
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Forms</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<script>
+
+
+    function submitFunction(event) {
+        event.preventDefault();
+
+        //alert("Welcome " + fn)
+        console.log("button clicked--Welcome");
+        console.log(event);
+
+        let fn = $("#firstname").val();
+        let ln = $("#lastname").val();
+
+        //------------------Lastname to uppercase----------------------
+
+        let firstChar = ln.charAt(0).toUpperCase();
+        let restname = ln.slice(1);
+        $("#lastname").val(firstChar + restname);
+        const err = new Error("Firstname and Lastname are mandatory!!");
+        const err1 = new Error("Name can not have digits");
+
+        //confirm("Do you confirm?");
+
+        //------------------Firstname & Lastname Not Empty ----------------------
+
+        if (fn == "" || ln == "") {
+            console.log("first name ie required");
+            $(".fns").css("color", "red");
+            $("#firstname").css("border-color", "red");
+            $("#lastname").css("border-color", "red");
+            $("#emptyErr").text(err).css("color", "red");
+
+        } else {
+            alert("Welcome " + fn + " " + ln);
+            $("#firstname").css("border-color", "black");
+            $("#lastname").css("border-color", "black");
+        }
+
+        //------------------Firstname lastname no digits----------------------
+
+        function hasDigit(name) {
+            return /\d/.test(name);
+        }
+        if(hasDigit(fn)){
+            $(".fns").css("color", "red");
+            $("#firstname").css("border-color", "red");
+            $("#lastname").css("border-color", "red");
+            $("#emptyErr").text(err1).css("color", "red");
+        }else if(hasDigit(ln)){
+            $(".fns").css("color", "red");
+            $("#firstname").css("border-color", "red");
+            $("#lastname").css("border-color", "red");
+            $("#emptyErr").text(err1).css("color", "red");
+        }else{
+            $("#firstname").css("border-color", "black");
+            $("#lastname").css("border-color", "black");
+        }
+
+
+
+
+
+
+
+
+
+        //----------Email Varification------------------------
+
+        let em = $("#email").val();
+
+        if (em.length == 0) {
+            const err = new Error("Please enter email!!");
+            $("#email").css("border-color", "red");
+            $("#emptyEmail").text(err).css("color", "red");
+        } else if (em.length > 0) {
+            let patternEm = /^[a-zA-Z0-9._]+@[a-z]+[.com]$/.test(em);
+            if (!patternEm) {
+                const err = new Error("Please enter CORRECT email!!")
+                $("#email").css("border-color", "red");
+                $("#emptyEmail").text(err).css("color", "red");
+            }
+        } else {
+            $("#email").css("border-color", "red");
+            $("#emptyEmail").css("color", "red");
+        }
+
+
+    }
+
+
+
+</script>
+
+<body>
+    <h1>Jquery Form Validations</h1>
+
+    <form onsubmit="submitFunction(event);">
+        <span class="fns">First Name <input type="text" id="firstname" name="firstname" autocomplete="off">
+        </span> <br><br>
+
+        <span class="fns">Last Name <input type="text" id="lastname" name="lastname" autocomplete="off">
+        </span>
+        <div id="emptyErr"></div>
+        <br>
+
+        <span class="fns">Email <input type="text" id="email" autocomplete="off">
+        </span>
+        <div id="emptyEmail"></div>
+        <br><br>
+
+
+        <button id="subBtn" type="submit">Submit</button><br><br>
+
+        <div>
+            <select id="opn" style="width: 150px;">
+                <option >Select a option</option>
+                <option value="Java-Script">Java-Script</option>
+                <option value="JQuery">JQuery</option>
+                <option value="Cascade Style Sheets">Cascade Style Sheets</option>
+                <option value="HTML">HTML</option>
+            </select>
+            <span id="opntext"></span>
+        </div><br>
+        
+    </form>
+</body>
+
+<script>
+    $("#firstname").on('focus', function () {
+        console.log("firstname has focus");
+    });
+    $("#firstname").on('blur', function () {
+        console.log("firstname has blur");
+    });
+
+    $("#opn").change(function() {
+    var selectedValue = $(this).val();
+    $(opntext).text(selectedValue);
+    console.log(selectedValue); 
+  });
+
+  
+
+</script>
+
+
+
+
+</html>
