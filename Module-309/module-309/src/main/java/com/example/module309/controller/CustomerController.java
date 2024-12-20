@@ -5,7 +5,9 @@ import com.example.module309.database.dao.CustomerDAO;
 import com.example.module309.database.dao.EmployeeDAO;
 import com.example.module309.database.entity.Customer;
 import com.example.module309.database.entity.Employee;
+import com.example.module309.database.entity.User;
 import com.example.module309.form.CreateCustomerFormBean;
+import com.example.module309.security.AuthenticatedUserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -35,6 +37,11 @@ public class CustomerController {
 
     @Autowired
     private EmployeeDAO employeeDAO;
+
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
+
+
 
 
     @GetMapping("/customer/search")
@@ -68,6 +75,9 @@ public class CustomerController {
         response.setViewName("customer/create");
         List<Employee> employees = employeeDAO.findAllEmployee();
         response.addObject("employeesKey", employees);
+
+        User loggedInUser = authenticatedUserService.loadCurrentUser();
+        LOG.debug("!!!!!!!!!!!!!!!!!!!!!!!!!! " + loggedInUser.toString());
 
         return response;
     }
