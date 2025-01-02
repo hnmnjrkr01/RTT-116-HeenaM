@@ -13,7 +13,8 @@ import java.util.Set;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class Customer {
+public class
+Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
