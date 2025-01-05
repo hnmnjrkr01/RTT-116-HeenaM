@@ -25,7 +25,7 @@ import java.util.List;
 public class EmployeeController {
 
 
-    private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
 
 
     @Autowired
