@@ -50,6 +50,8 @@ public class CustomerController {
 
         response.setViewName("customer/search");        ///WEB-INF/jsp/customer.search.jsp
 
+        int x = 10/0;
+
         //add the searched value to the model
         response.addObject("search", firstName);        //General practice is to keep the name SAME but for out understanding Eric kept it different
 
@@ -71,6 +73,8 @@ public class CustomerController {
     @GetMapping("/customer/create")
     public ModelAndView create() {
         ModelAndView response = new ModelAndView();
+
+
 
         response.setViewName("customer/create");
         List<Employee> employees = employeeDAO.findAllEmployee();
