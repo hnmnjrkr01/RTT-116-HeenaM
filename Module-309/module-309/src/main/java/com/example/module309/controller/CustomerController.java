@@ -19,9 +19,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Slf4j
@@ -50,7 +54,6 @@ public class CustomerController {
 
         response.setViewName("customer/search");        ///WEB-INF/jsp/customer.search.jsp
 
-        int x = 10/0;
 
         //add the searched value to the model
         response.addObject("search", firstName);        //General practice is to keep the name SAME but for out understanding Eric kept it different
@@ -86,9 +89,10 @@ public class CustomerController {
         return response;
     }
 
-   @GetMapping("/customer/createCustomer")
+   @PostMapping("/customer/createCustomer")
    public ModelAndView createCustomerSubmit(@Valid CreateCustomerFormBean customerForm,
-                                            BindingResult bindingResult) {
+                                            BindingResult bindingResult) throws Exception
+   {
    //validation cant be done with PathVariable
    //But manual validations can be done
 
@@ -123,6 +127,21 @@ public class CustomerController {
            customer.setCity(customerForm.getCity());
            customer.setCountry(customerForm.getCountry());
 
+           LOG.debug("uploaded filename = " + customerForm.getUpload().getOriginalFilename() + " size = " + customerForm.getUpload().getSize());
+
+           customerForm.getUpload().getSize();
+// create a new file object that represents the location to save the upload to
+// we know that intellij always assumes the current working directory is the root of the project so we are making
+// a relative URL To the images folder within our project
+           String pathToSave = "./src/main/webapp/pub/images/" + customerForm.getUpload().getOriginalFilename()  ;
+
+           // this is a java utility that will read the file from the upload and write it to the file we created above
+// will not take the entire file into memory
+           Files.copy(customerForm.getUpload().getInputStream(),  Paths.get(pathToSave), StandardCopyOption.REPLACE_EXISTING);
+// this is the url that we will use to display the image in the browser
+// it is an absolute URL based on the webapp folder as it would be used in the html
+           String url = "/pub/images/" + customerForm.getUpload().getOriginalFilename();
+           customer.setImgURL(url);
 
                Employee employee = employeeDAO.findEmployeeById(customerForm.getEmployeeId());
                customer.setEmployee(employee);

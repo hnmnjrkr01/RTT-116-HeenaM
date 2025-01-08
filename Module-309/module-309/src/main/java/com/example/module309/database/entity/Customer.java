@@ -76,6 +76,9 @@ public class Customer {
     @Column(name = "credit_limit", columnDefinition = "DECIMAL")
     private Double creditLimit;
 
+    @Column(name="img_url")
+    private String imgURL;
+
     @Override
     public String toString() {
         return "Customer{" +

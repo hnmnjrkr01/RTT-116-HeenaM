@@ -18,7 +18,7 @@
 
 <section class="bg-light2 py-5">
   <div class="container">
-    <form action="/customer/createCustomer">
+    <form action="/customer/createCustomer" method="POST" enctype="multipart/form-data" >
 
       <input type="hidden" name="id" value="${customerForm.id}"/>
 
@@ -181,6 +181,14 @@
                 </option>
               </c:forEach>
           </select>
+        </div>
+      </div>
+
+
+      <div class="mt-3 row justify-content-center">
+        <label for="upload" class="col-sm-2 col-form-label">Upload Image</label>
+        <div class="col-sm-10">
+          <input type="file" class="form-control" id="upload" name="upload">
         </div>
       </div>
 

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -53,5 +54,8 @@ public class CreateCustomerFormBean {
 
    // @NotEmpty(message = "Employee is needed selected!")
     private Integer employeeId;
+
+
+    private MultipartFile upload;
 
 }

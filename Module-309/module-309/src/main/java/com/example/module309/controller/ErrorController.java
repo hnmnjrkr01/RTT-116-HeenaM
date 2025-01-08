@@ -34,7 +34,7 @@ public class ErrorController {
         ModelAndView response = new ModelAndView("error/500");
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 
-        log.debug("500 error for " + request.getRequestURI());
+        log.debug("500 error for " + request.getRequestURI(),ex);
 
         response.addObject("exceptionMessage", ex.getMessage());
 

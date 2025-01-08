@@ -50,6 +50,7 @@
                     <th>Contact Last Name</th>
                     <th>id</th>
                     <th>Customer Name</th>
+                    <td>Image</td>
                     <th>Edit</th>
                 </tr>
                 <c:forEach var="customer" items="${customersKey}">
@@ -58,6 +59,7 @@
                         <td>${customer.contactLastname}</td>
                         <td>${customer.id}</td>
                         <td>${customer.customerName}</td>
+                        <td><img src="${customer.imgURL}" style="width: 200px;"/></td>
                         <td><a href="/customer/edit/${customer.id}">Edit</a></td>
                     </tr>
                 </c:forEach>
