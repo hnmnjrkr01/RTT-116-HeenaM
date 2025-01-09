@@ -8,6 +8,8 @@ import com.example.module309.database.entity.Employee;
 import com.example.module309.database.entity.User;
 import com.example.module309.form.CreateCustomerFormBean;
 import com.example.module309.security.AuthenticatedUserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -17,10 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.nio.file.Files;
@@ -190,7 +189,26 @@ public class CustomerController {
    }
 
 
+   @GetMapping("/customer/ajaxExample")
+    public ModelAndView ajaxExample(){
 
+        ModelAndView response = new ModelAndView();
+
+        response.setViewName("customer/ajaxExample");
+        return response;
+
+   }
+
+
+   @ResponseBody
+    @GetMapping("/customer/ajaxCall")
+    public String ajaxCall( @RequestParam Integer customerId) throws Exception{
+        Customer customer = customerDAO.findById(customerId);
+
+        String json = new ObjectMapper().writeValueAsString(customer);
+
+        return json;
+    }
 
 
 

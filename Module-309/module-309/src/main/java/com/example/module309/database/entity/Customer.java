@@ -1,5 +1,6 @@
 package com.example.module309.database.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Customer {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sales_rep_employee_id")               //This annotation is used only for foreing key
     @ToString.Exclude
+    @JsonIgnore
     private Employee employee;
 
     // because of this relationship foreign key is now read only set function wont work for this column

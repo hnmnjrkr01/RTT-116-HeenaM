@@ -47,6 +47,9 @@
             <a class="nav-link" href="/customer/create">Create Customer</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/customer/ajaxExample">Ajax Example</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/employee/searchEmployee">Employee Search</a>
           </li>
           <li class="nav-item">
