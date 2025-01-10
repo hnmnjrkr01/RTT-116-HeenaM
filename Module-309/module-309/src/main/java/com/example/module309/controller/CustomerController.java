@@ -117,6 +117,10 @@ public class CustomerController {
                customer = new Customer();
            }
 
+           if(customerForm.getCountry().startsWith("X")){
+               bindingResult.rejectValue("country", "country.regex","Country cannot begin with 'X'");
+           }
+
            customer.setCustomerName(customerForm.getCompanyName());
            customer.setContactFirstname(customerForm.getFirstName());
            customer.setContactLastname(customerForm.getLastName());
@@ -166,6 +170,7 @@ public class CustomerController {
         Customer customer = customerDAO.findById(customerId);
 
         CreateCustomerFormBean customerForm = new CreateCustomerFormBean();
+
 
 
         customerForm.setId(customer.getId());
